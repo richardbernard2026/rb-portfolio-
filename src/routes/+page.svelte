@@ -17,6 +17,17 @@
 		});
 	}
 
+	let calloutCopied = $state(false);
+	let calloutCopyTimeout;
+
+	function handleCalloutEmailClick() {
+		navigator.clipboard.writeText('richard.bernard2026@gmail.com').then(() => {
+			calloutCopied = true;
+			clearTimeout(calloutCopyTimeout);
+			calloutCopyTimeout = setTimeout(() => (calloutCopied = false), 2000);
+		});
+	}
+
 	// ── Parallax ────────────────────────────────────────────────
 	let scrollY = $state(0);
 
@@ -108,6 +119,48 @@
 			ease: 'power2.out',
 			scrollTrigger: {
 				trigger: '#achievements-row',
+				start: 'top 90%'
+			}
+		});
+
+		// ── Projects: section header ──────────────────────────────
+		gsap.from('#projects-header', {
+			y: 30,
+			opacity: 0,
+			duration: 0.8,
+			ease: 'power2.out',
+			scrollTrigger: {
+				trigger: '#projects-header',
+				start: 'top 85%'
+			}
+		});
+
+		// ── Projects: cards staggered fade-up ─────────────────────
+		gsap.from('.project-card', {
+			y: 40,
+			opacity: 0,
+			duration: 0.7,
+			stagger: 0.15,
+			ease: 'power2.out',
+			scrollTrigger: {
+				trigger: '#projects-grid',
+				start: 'top 85%'
+			}
+		});
+
+		// ── Projects: card hover animations ───────────────────────
+		document.querySelectorAll('.project-card').forEach((card) => {
+			card.addEventListener('mouseenter', () => gsap.to(card, { y: -4, duration: 0.3, ease: 'power2.out' }));
+			card.addEventListener('mouseleave', () => gsap.to(card, { y: 0, duration: 0.3, ease: 'power2.out' }));
+		});
+
+		// ── Projects: callout bar ──────────────────────────────────
+		gsap.from('#projects-callout', {
+			opacity: 0,
+			duration: 0.8,
+			ease: 'power2.out',
+			scrollTrigger: {
+				trigger: '#projects-callout',
 				start: 'top 90%'
 			}
 		});
@@ -300,6 +353,178 @@
 			</div>
 
 		</div>
+	</div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════
+     PROJECTS & INITIATIVES
+══════════════════════════════════════════════════════════════ -->
+<section id="projects" class="w-full py-24" style="background: #0D1333;">
+	<div class="max-w-6xl mx-auto px-6 md:px-12">
+
+		<!-- ── Section Header ── -->
+		<div id="projects-header" class="flex flex-col items-center text-center mb-16">
+			<p class="text-xs font-semibold uppercase tracking-[0.2em] mb-3" style="color: #C9A96E;">
+				What I'm Building
+			</p>
+			<h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
+				Projects &amp; Initiatives
+			</h2>
+			<p class="text-sm md:text-base text-white/60 max-w-2xl mx-auto leading-relaxed">
+				From AI ventures to community impact — each project is a deliberate step toward a larger vision.
+			</p>
+			<div class="mt-4" style="width: 60px; height: 1px; background: rgba(201,169,110,0.2);"></div>
+		</div>
+
+		<!-- ── Cards Grid ── -->
+		<div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch mb-12">
+
+			<!-- Card 1: Aruon-AI -->
+			<div
+				role="article"
+				class="project-card rounded-2xl p-8 flex flex-col transition-colors duration-300"
+				style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);"
+				onmouseenter={(e) => e.currentTarget.style.borderColor='rgba(201,169,110,0.4)'}
+				onmouseleave={(e) => e.currentTarget.style.borderColor='rgba(255,255,255,0.08)'}
+			>
+				<div class="flex items-start justify-between mb-4">
+					<span
+						class="text-xs font-semibold px-3 py-1 rounded-full"
+						style="background: #C9A96E; color: #0A0F2C;"
+					>Active · Founder</span>
+				</div>
+				<div class="text-4xl mb-0">🤖</div>
+				<h3 class="text-2xl font-bold text-white mt-4 mb-1">Aruon-AI</h3>
+				<p class="text-sm mb-4" style="color: rgba(201,169,110,0.8);">AI Receptionist for Small Businesses</p>
+				<p class="text-sm text-white/70 leading-relaxed mb-5">
+					The AI receptionist built for small businesses. Aruon AI answers every call automatically — handling bookings, hours, and FAQs — so business owners never miss a customer again. Operational at $49/month with a 30-day free trial.
+				</p>
+				<ul class="flex flex-col gap-2 mb-6">
+					{#each [
+						'Answers 80% of calls automatically',
+						'Books appointments in real time',
+						'English and Spanish fluency'
+					] as feat (feat)}
+						<li class="flex items-start gap-2 text-sm text-white/70">
+							<span class="font-bold mt-0.5" style="color: #C9A96E;">✔</span>{feat}
+						</li>
+					{/each}
+				</ul>
+				<a
+					href="https://aruon.ai"
+					target="_blank"
+					rel="noopener noreferrer"
+					class="mt-auto text-center text-sm font-semibold px-6 py-3 rounded-full transition-all duration-200 hover:brightness-110 active:scale-95"
+					style="background: #C9A96E; color: #0A0F2C;"
+				>Visit Aruon-AI →</a>
+			</div>
+
+			<!-- Card 2: Prosperity Mandate -->
+			<div
+				role="article"
+				class="project-card rounded-2xl p-8 flex flex-col transition-colors duration-300"
+				style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);"
+				onmouseenter={(e) => e.currentTarget.style.borderColor='rgba(201,169,110,0.4)'}
+				onmouseleave={(e) => e.currentTarget.style.borderColor='rgba(255,255,255,0.08)'}
+			>
+				<div class="flex items-start justify-between mb-4">
+					<span
+						class="text-xs font-semibold px-3 py-1 rounded-full"
+						style="border: 1px solid #C9A96E; color: #C9A96E;"
+					>Active · CEO &amp; Director of Curriculum</span>
+				</div>
+				<div class="text-4xl mb-0">📋</div>
+				<h3 class="text-2xl font-bold text-white mt-4 mb-1">The Prosperity Mandate</h3>
+				<p class="text-sm mb-4" style="color: rgba(201,169,110,0.8);">AI &amp; Financial Literacy for Every Texas High School</p>
+				<p class="text-sm text-white/70 leading-relaxed mb-5">
+					A Frontera Leadership Institute initiative delivering turnkey, FERPA-compliant AI and financial literacy pilots to under-resourced Title I districts in South Texas — at zero cost to the district, funded by corporate workforce investment.
+				</p>
+				<ul class="flex flex-col gap-2 mb-6">
+					{#each [
+						'12-week AI & Financial Literacy intensives',
+						'Corporate-funded, zero cost to districts',
+						'Policy pipeline to the Texas SBOE'
+					] as feat (feat)}
+						<li class="flex items-start gap-2 text-sm text-white/70">
+							<span class="font-bold mt-0.5" style="color: #C9A96E;">✔</span>{feat}
+						</li>
+					{/each}
+				</ul>
+				<a
+					href="https://www.prosperitymandate.org/"
+					target="_blank"
+					rel="noopener noreferrer"
+					class="mt-auto text-center text-sm font-semibold px-6 py-3 rounded-full transition-all duration-200 hover:bg-[#C9A96E]/10 active:scale-95"
+					style="border: 1px solid #C9A96E; color: #C9A96E;"
+				>Visit Initiative →</a>
+			</div>
+
+			<!-- Card 3: Life Blueprint Club -->
+			<div
+				role="article"
+				class="project-card rounded-2xl p-8 flex flex-col transition-colors duration-300"
+				style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);"
+				onmouseenter={(e) => e.currentTarget.style.borderColor='rgba(201,169,110,0.4)'}
+				onmouseleave={(e) => e.currentTarget.style.borderColor='rgba(255,255,255,0.08)'}
+			>
+				<div class="flex items-start justify-between mb-4">
+					<span
+						class="text-xs font-semibold px-3 py-1 rounded-full"
+						style="border: 1px solid rgba(255,255,255,0.3); color: white;"
+					>Founder · BECHS</span>
+				</div>
+				<div class="text-4xl mb-0">🎯</div>
+				<h3 class="text-2xl font-bold text-white mt-4 mb-1">Life Blueprint Club</h3>
+				<p class="text-sm mb-4" style="color: rgba(201,169,110,0.8);">Financial &amp; Technological Literacy at BECHS</p>
+				<p class="text-sm text-white/70 leading-relaxed mb-5">
+					Founded at Brownsville Early College High School to prepare students for life after graduation. Through structured workshops, members build real-world skills in budgeting, AI tools, and workforce readiness — skills the standard curriculum doesn't cover.
+				</p>
+				<ul class="flex flex-col gap-2 mb-6">
+					{#each [
+						'Financial literacy workshops',
+						'AI productivity training',
+						'Workforce readiness curriculum'
+					] as feat (feat)}
+						<li class="flex items-start gap-2 text-sm text-white/70">
+							<span class="font-bold mt-0.5" style="color: #C9A96E;">✔</span>{feat}
+						</li>
+					{/each}
+				</ul>
+				<a
+					href="/life-blueprint"
+					class="mt-auto text-center text-sm font-semibold px-6 py-3 rounded-full transition-all duration-200 hover:bg-white/10 active:scale-95"
+					style="border: 1px solid white; color: white;"
+				>View Initiative →</a>
+			</div>
+
+		</div>
+
+		<!-- ── Callout Bar ── -->
+		<div
+			id="projects-callout"
+			class="w-full rounded-2xl px-8 py-10 flex flex-col md:flex-row items-center justify-between gap-6"
+			style="background: rgba(201,169,110,0.08); border-top: 1px solid rgba(201,169,110,0.15); border-bottom: 1px solid rgba(201,169,110,0.15);"
+		>
+			<div class="text-center md:text-left">
+				<p class="text-lg font-bold text-white mb-1">Have a project or partnership in mind?</p>
+				<p class="text-sm text-white/60">I'm always open to meaningful collaborations.</p>
+			</div>
+			<div class="flex flex-col items-center gap-2">
+				<a
+					href="mailto:richard.bernard2026@gmail.com"
+					class="shrink-0 text-sm font-semibold px-7 py-3 rounded-full transition-all duration-200 hover:brightness-110 active:scale-95"
+					style="background: #C9A96E; color: #0A0F2C;"
+				>Get in Touch →</a>
+				<button
+					onclick={handleCalloutEmailClick}
+					class="text-xs bg-transparent border-none p-0 cursor-pointer transition-opacity duration-200 hover:opacity-70"
+					style="color: #C9A96E;"
+				>
+					{calloutCopied ? '✓ Copied!' : 'richard.bernard2026@gmail.com — click to copy'}
+				</button>
+			</div>
+		</div>
+
 	</div>
 </section>
 
