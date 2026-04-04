@@ -60,9 +60,8 @@
 
 		<!-- Connect CTA — always visible -->
 		<a
-			href="https://www.linkedin.com/in/richard-bernard-370b85367/"
-			target="_blank"
-			rel="noopener noreferrer"
+			href="/richard-bernard.vcf"
+			download="Richard Bernard III"
 			class="text-sm font-semibold px-5 py-2 rounded-full transition-all duration-200 hover:brightness-110 active:scale-95"
 			style="background: #C9A96E; color: #0A0F2C;"
 		>
