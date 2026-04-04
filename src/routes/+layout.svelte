@@ -31,7 +31,7 @@
 		href="/"
 		class="text-white font-bold text-lg tracking-widest hover:opacity-80 transition-opacity duration-200"
 	>
-		Richard Bernard III
+		Richard C. Bernard III
 	</a>
 
 	<!-- Right side -->
@@ -61,7 +61,7 @@
 		<!-- Connect CTA — always visible -->
 		<a
 			href="/richard-bernard.vcf"
-			download="Richard Bernard III"
+			download="Richard C. Bernard III"
 			class="text-sm font-semibold px-5 py-2 rounded-full transition-all duration-200 hover:brightness-110 active:scale-95"
 			style="background: #C9A96E; color: #0A0F2C;"
 		>

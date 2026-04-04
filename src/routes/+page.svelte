@@ -70,6 +70,47 @@
 				start: 'top 80%'
 			}
 		});
+
+		// ── Academics: section header ─────────────────────────────
+		gsap.from('#academics-header', {
+			y: 30,
+			opacity: 0,
+			duration: 0.8,
+			ease: 'power2.out',
+			scrollTrigger: {
+				trigger: '#academics-header',
+				start: 'top 85%'
+			}
+		});
+
+		// ── Academics: timeline cards (alternating) ───────────────
+		gsap.utils.toArray('.timeline-card').forEach((card, i) => {
+			const isLeft = i % 2 === 0;
+			gsap.from(card, {
+				x: isLeft ? -40 : 40,
+				opacity: 0,
+				duration: 0.7,
+				delay: i * 0.15,
+				ease: 'power2.out',
+				scrollTrigger: {
+					trigger: card,
+					start: 'top 85%'
+				}
+			});
+		});
+
+		// ── Academics: achievement cards ──────────────────────────
+		gsap.from('.achievement-card', {
+			y: 30,
+			opacity: 0,
+			duration: 0.6,
+			stagger: 0.1,
+			ease: 'power2.out',
+			scrollTrigger: {
+				trigger: '#achievements-row',
+				start: 'top 90%'
+			}
+		});
 	});
 </script>
 
@@ -105,7 +146,7 @@
 			</p>
 
 			<h1 class="text-4xl md:text-6xl font-bold text-white leading-tight mb-6">
-				Richard Bernard III
+				Richard C. Bernard III
 			</h1>
 
 			<p class="text-base md:text-lg text-white/70 font-normal max-w-md leading-relaxed">
@@ -118,7 +159,7 @@
 			<img
 				id="hero-photo"
 				src="/richard-hero.jpg"
-				alt="Richard Bernard III — Founder of Aruon-AI"
+				alt="Richard C. Bernard III — Founder of Aruon-AI"
 				class="w-full h-[280px] md:h-[480px] rounded-2xl object-cover object-top"
 				style="
 					border: 1px solid rgba(201,169,110,0.3);
@@ -259,5 +300,145 @@
 			</div>
 
 		</div>
+	</div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════
+     ACADEMICS & LEADERSHIP
+══════════════════════════════════════════════════════════════ -->
+<section id="academics" class="w-full py-24 bg-[#0A0F2C]">
+	<div class="max-w-5xl mx-auto px-6 md:px-12">
+
+		<!-- ── Section Header ── -->
+		<div id="academics-header" class="flex flex-col items-center text-center mb-16">
+			<p class="text-xs font-semibold uppercase tracking-[0.2em] mb-3" style="color: #C9A96E;">
+				My Journey
+			</p>
+			<h2 class="text-3xl md:text-4xl font-bold text-white">
+				Academics &amp; Leadership
+			</h2>
+			<div class="mt-4" style="width: 60px; height: 1px; background: rgba(201,169,110,0.2);"></div>
+		</div>
+
+		<!-- ── Timeline ── -->
+		<div class="relative">
+			<!-- Center line — hidden on mobile, visible md+ -->
+			<div
+				class="hidden md:block absolute left-1/2 top-0 bottom-0 -translate-x-1/2"
+				style="width: 1px; background: rgba(201,169,110,0.15);"
+			></div>
+			<!-- Mobile left line -->
+			<div
+				class="md:hidden absolute left-3 top-0 bottom-0"
+				style="width: 1px; background: rgba(201,169,110,0.15);"
+			></div>
+
+			<div class="flex flex-col gap-12">
+
+				{#each [
+					{
+						side: 'left',
+						date: '2022 — 2025',
+						title: 'Brownsville Early College High School',
+						description: 'Completed high school with a 4.84 GPA while dual-enrolling at the University of Texas Rio Grande Valley. Graduating May 2025 with both a high school diploma and an Associate\'s Degree — simultaneously.',
+						tags: ['4.84 GPA', 'Dual Enrollment', "Associate's Degree"]
+					},
+					{
+						side: 'right',
+						date: '2023 — 2025',
+						title: 'Dual Enrollment — UTRGV',
+						description: 'Completed college-level coursework at the University of Texas Rio Grande Valley while still in high school, earning transferable credit hours toward a full undergraduate degree.',
+						tags: ['UTRGV', 'College Credit', 'Early College']
+					},
+					{
+						side: 'left',
+						date: '2024',
+						title: 'Life Blueprint Club — Founder',
+						description: 'Founded the Life Blueprint Club at Brownsville Early College High School to equip students with financial and technological literacy. The club prepares students for life after high school through structured workshops covering budgeting, AI tools, and workforce readiness.',
+						tags: ['Financial Literacy', 'AI Education', 'Student Leadership']
+					},
+					{
+						side: 'right',
+						date: '2024 — Present',
+						title: 'AI Productivity & Financial Literacy Educator',
+						description: 'Led initiatives teaching fellow students how to leverage AI tools for productivity and apply foundational financial principles — bridging the gap between classroom education and real-world workforce expectations.',
+						tags: ['Teaching', 'AI Tools', 'Financial Education']
+					},
+					{
+						side: 'left',
+						date: 'Fall 2025',
+						title: 'Incoming — UT Austin (CAP Program)',
+						description: "Accepted into the Coordinated Admission Program (CAP) at the University of Texas at Austin. Beginning undergraduate studies at UTRGV in Fall 2025, transitioning to UT Austin's main campus in the second semester as a full Longhorn.",
+						tags: ['UT Austin', 'CAP Program', 'Undergraduate']
+					}
+				] as entry (entry.title)}
+					<!-- Desktop: alternate left/right. Mobile: all stack left-indented -->
+					<div class="relative flex items-start
+					            {entry.side === 'left'
+					              ? 'md:flex-row md:justify-start pl-8 md:pl-0'
+					              : 'md:flex-row-reverse md:justify-start pl-8 md:pl-0'}">
+
+						<!-- Gold dot on center line -->
+						<div
+							class="absolute hidden md:block top-6 left-1/2 -translate-x-1/2 rounded-full z-10"
+							style="width: 10px; height: 10px; background: #C9A96E;"
+						></div>
+						<!-- Mobile dot on left line -->
+						<div
+							class="absolute md:hidden top-6 left-3 -translate-x-1/2 rounded-full z-10"
+							style="width: 10px; height: 10px; background: #C9A96E;"
+						></div>
+
+						<!-- Card — takes up ~45% width on desktop, full on mobile -->
+						<div
+							class="timeline-card w-full md:w-[45%] rounded-2xl p-6"
+							style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);"
+						>
+							<p class="text-xs font-semibold uppercase tracking-[0.15em] mb-2" style="color: #C9A96E;">
+								{entry.date}
+							</p>
+							<h3 class="text-base font-bold text-white mb-2 leading-snug">
+								{entry.title}
+							</h3>
+							<p class="text-sm text-white/70 leading-relaxed mb-4">
+								{entry.description}
+							</p>
+							<div class="flex flex-wrap gap-2">
+								{#each entry.tags as tag (tag)}
+									<span
+										class="text-xs font-medium px-3 py-1 rounded-full"
+										style="background: rgba(201,169,110,0.15); color: #C9A96E;"
+									>
+										{tag}
+									</span>
+								{/each}
+							</div>
+						</div>
+
+					</div>
+				{/each}
+
+			</div>
+		</div>
+
+		<!-- ── Achievements Row ── -->
+		<div id="achievements-row" class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-4">
+			{#each [
+				{ icon: '🏅', title: 'AMC Math', subtitle: 'Silver Medal' },
+				{ icon: '🎓', title: 'College Board', subtitle: 'First Generation Recognition' },
+				{ icon: '📜', title: 'Microsoft Certified', subtitle: 'Word · Word Expert · PowerPoint' },
+				{ icon: '🌎', title: 'Conferences', subtitle: 'SXSW · AI Conference · Bitcoin Conference' }
+			] as card (card.title)}
+				<div
+					class="achievement-card rounded-2xl p-6 flex flex-col items-center text-center"
+					style="background: rgba(255,255,255,0.04); border: 1px solid rgba(201,169,110,0.15);"
+				>
+					<span class="text-3xl mb-3">{card.icon}</span>
+					<p class="text-sm font-bold text-white mb-1">{card.title}</p>
+					<p class="text-xs" style="color: rgba(201,169,110,0.8);">{card.subtitle}</p>
+				</div>
+			{/each}
+		</div>
+
 	</div>
 </section>
