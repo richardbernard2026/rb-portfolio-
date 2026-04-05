@@ -164,6 +164,48 @@
 				start: 'top 90%'
 			}
 		});
+
+		// ── Profile: section header ────────────────────────────────
+		gsap.from('#profile-header', {
+			y: 30,
+			opacity: 0,
+			duration: 0.8,
+			ease: 'power2.out',
+			scrollTrigger: {
+				trigger: '#profile-header',
+				start: 'top 85%'
+			}
+		});
+
+		// ── Profile: left column blocks ────────────────────────────
+		gsap.utils.toArray('.profile-left-block').forEach((block, i) => {
+			gsap.from(block, {
+				x: -40,
+				opacity: 0,
+				duration: 0.7,
+				delay: i * 0.2,
+				ease: 'power2.out',
+				scrollTrigger: {
+					trigger: block,
+					start: 'top 80%'
+				}
+			});
+		});
+
+		// ── Profile: right column blocks ───────────────────────────
+		gsap.utils.toArray('.profile-right-block').forEach((block, i) => {
+			gsap.from(block, {
+				x: 40,
+				opacity: 0,
+				duration: 0.7,
+				delay: i * 0.2,
+				ease: 'power2.out',
+				scrollTrigger: {
+					trigger: block,
+					start: 'top 80%'
+				}
+			});
+		});
 	});
 </script>
 
@@ -529,6 +571,223 @@
 </section>
 
 <!-- ══════════════════════════════════════════════════════════════
+     PROFESSIONAL PROFILE
+══════════════════════════════════════════════════════════════ -->
+<section id="profile" class="w-full py-24 bg-[#0A0F2C]">
+	<div class="max-w-5xl mx-auto px-6 md:px-12">
+
+		<!-- ── Section Header ── -->
+		<div id="profile-header" class="flex flex-col items-center text-center mb-16">
+			<p class="text-xs font-semibold uppercase tracking-[0.2em] mb-3" style="color: #C9A96E;">
+				Professional Profile
+			</p>
+			<h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
+				Experience &amp; Expertise
+			</h2>
+			<p class="text-sm md:text-base text-white/60 max-w-2xl mx-auto leading-relaxed">
+				A structured overview of my skills, experience, and credentials.
+			</p>
+			<div class="mt-4" style="width: 60px; height: 1px; background: rgba(201,169,110,0.2);"></div>
+		</div>
+
+		<!-- ── Two-column layout (60% / 40%) ── -->
+		<div class="grid grid-cols-1 md:grid-cols-[3fr_2fr] gap-12">
+
+			<!-- ════ LEFT COLUMN ════ -->
+			<div class="flex flex-col gap-10">
+
+				<!-- BLOCK 1 — EXPERIENCE -->
+				<div class="profile-left-block">
+					<h3 class="text-xl font-bold text-white border-l-2 border-[#C9A96E] pl-4 mb-6">
+						Experience
+					</h3>
+
+					{#each [
+						{
+							title: 'Founder & CEO',
+							company: 'Aruon-AI',
+							period: '2026 — Present',
+							description: 'Founded and launched an AI receptionist platform serving small businesses. Responsible for product strategy, business development, and go-to-market execution.'
+						},
+						{
+							title: 'CEO & Director of Curriculum',
+							company: 'The Prosperity Mandate',
+							period: '2026 — Present',
+							description: 'Leading a South Texas initiative delivering FERPA-compliant AI and financial literacy pilots to Title I high schools, funded by corporate workforce investment.'
+						},
+						{
+							title: 'Founder',
+							company: 'Life Blueprint Club · BECHS',
+							period: '2025 — Present',
+							description: 'Founded a student-led club focused on financial and technological literacy, preparing high school seniors for life after graduation.'
+						},
+						{
+							title: 'Founder & Owner',
+							company: 'Ride Revival Mobile Detailing',
+							period: '2025 — Early 2026',
+							description: 'Founded and operated Ride Revival Mobile Detailing, an independent automotive detailing business managing client acquisition, scheduling, and full-service mobile detailing delivery.'
+						}
+					] as exp, i (exp.company)}
+						<div class="pb-4 mb-4 {i < 3 ? 'border-b border-white/5' : ''}">
+							<div class="flex flex-col md:flex-row md:items-baseline md:justify-between gap-1 mb-1">
+								<p class="font-bold text-white">{exp.title}</p>
+								<p class="text-sm text-white/50 shrink-0">{exp.period}</p>
+							</div>
+							<p class="text-sm mb-2" style="color: #C9A96E;">{exp.company}</p>
+							<p class="text-sm text-white/60 leading-relaxed">{exp.description}</p>
+						</div>
+					{/each}
+				</div>
+
+				<!-- BLOCK 2 — VOLUNTEER WORK -->
+				<div class="profile-left-block">
+					<h3 class="text-xl font-bold text-white border-l-2 border-[#C9A96E] pl-4 mb-6">
+						Volunteer Work
+					</h3>
+
+					{#each [
+						{ title: 'Altar Server & Volunteer', org: "St. Luke's Catholic Church", period: 'Ongoing' },
+						{ title: 'Volunteer', org: 'Gladys Porter Zoo · Brownsville', period: '2024' },
+						{ title: 'Volunteer', org: "CCE · St. Luke's Catholic Church", period: 'Ongoing' }
+					] as vol, i (vol.org)}
+						<div class="pb-4 mb-4 {i < 2 ? 'border-b border-white/5' : ''}">
+							<div class="flex flex-col md:flex-row md:items-baseline md:justify-between gap-1 mb-1">
+								<p class="font-bold text-white">{vol.title}</p>
+								<p class="text-sm text-white/50 shrink-0">{vol.period}</p>
+							</div>
+							<p class="text-sm" style="color: #C9A96E;">{vol.org}</p>
+						</div>
+					{/each}
+				</div>
+
+				<!-- BLOCK 3 — CONFERENCES -->
+				<div class="profile-left-block flex flex-col gap-4">
+					<h3 class="text-xl font-bold text-white border-l-2 border-[#C9A96E] pl-4">
+						Conferences &amp; Events
+					</h3>
+					<div class="flex flex-wrap gap-2">
+						{#each ['SXSW 2025', 'AI Conference', 'Bitcoin Conference'] as conf (conf)}
+							<span
+								class="px-4 py-1 rounded-full text-sm"
+								style="background: rgba(201,169,110,0.1); border: 1px solid rgba(201,169,110,0.3); color: #C9A96E;"
+							>{conf}</span>
+						{/each}
+					</div>
+				</div>
+
+			</div>
+
+			<!-- ════ RIGHT COLUMN ════ -->
+			<div class="flex flex-col gap-10">
+
+				<!-- BLOCK 1 — SKILLS -->
+				<div class="profile-right-block">
+					<h3 class="text-xl font-bold text-white border-l-2 border-[#C9A96E] pl-4 mb-6">
+						Skills &amp; Expertise
+					</h3>
+
+					<div class="flex flex-col gap-5">
+						{#each [
+							{
+								category: 'Artificial Intelligence',
+								skills: ['AI Tool Integration', 'Prompt Engineering', 'Workflow Automation', 'AI Business Applications']
+							},
+							{
+								category: 'Technology & Development',
+								skills: ['Website Development', 'SvelteKit', 'Tailwind CSS', 'Research & Analysis']
+							},
+							{
+								category: 'Business & Law',
+								skills: ['M&A Fundamentals', 'Business Strategy', 'Financial Regulations', 'Corporate Law (Developing)']
+							},
+							{
+								category: 'Academic',
+								skills: ['Mathematics (AMC Level)', 'Dual-Language Learning', 'Academic Research', 'Financial Literacy Education']
+							}
+						] as group (group.category)}
+							<div>
+								<p class="text-xs font-semibold uppercase tracking-[0.15em] mb-2" style="color: #C9A96E;">
+									{group.category}
+								</p>
+								<div class="flex flex-wrap gap-2">
+									{#each group.skills as skill (skill)}
+										<span
+											class="px-3 py-1 rounded-full text-xs text-white"
+											style="background: rgba(255,255,255,0.06);"
+										>{skill}</span>
+									{/each}
+								</div>
+							</div>
+						{/each}
+					</div>
+				</div>
+
+				<!-- BLOCK 2 — CERTIFICATIONS -->
+				<div class="profile-right-block">
+					<h3 class="text-xl font-bold text-white border-l-2 border-[#C9A96E] pl-4 mb-6">
+						Certifications
+					</h3>
+
+					<div class="flex flex-col gap-3">
+						{#each [
+							{ icon: '📄', name: 'Microsoft Word', issuer: 'Microsoft Certified' },
+							{ icon: '📄', name: 'Microsoft Word Expert', issuer: 'Microsoft Certified' },
+							{ icon: '📊', name: 'Microsoft PowerPoint', issuer: 'Microsoft Certified' }
+						] as cert (cert.name)}
+							<div
+								class="flex items-center gap-3 rounded-xl p-4"
+								style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);"
+							>
+								<span class="text-2xl">{cert.icon}</span>
+								<div>
+									<p class="text-sm font-bold text-white">{cert.name}</p>
+									<p class="text-xs text-white/50">{cert.issuer}</p>
+								</div>
+							</div>
+						{/each}
+					</div>
+				</div>
+
+				<!-- BLOCK 3 — EDUCATION -->
+				<div class="profile-right-block">
+					<h3 class="text-xl font-bold text-white border-l-2 border-[#C9A96E] pl-4 mb-6">
+						Education
+					</h3>
+
+					{#each [
+						{
+							school: 'University of Texas at Austin',
+							detail: 'CAP Program — Incoming',
+							period: 'Spring 2027 (CAP Transition)'
+						},
+						{
+							school: 'UT Rio Grande Valley',
+							detail: 'CAP Year + Dual Enrollment',
+							period: 'Fall 2026 — Spring 2027'
+						},
+						{
+							school: 'Brownsville Early College High School',
+							detail: "High School Diploma + Associate's Degree · 4.84 GPA",
+							period: '2022 — Spring 2026'
+						}
+					] as edu, i (edu.school)}
+						<div class="pb-4 mb-4 {i < 2 ? 'border-b border-white/5' : ''}">
+							<div class="flex flex-col md:flex-row md:items-baseline md:justify-between gap-1 mb-1">
+								<p class="font-bold text-white text-sm leading-snug">{edu.school}</p>
+								<p class="text-sm text-white/50 shrink-0">{edu.period}</p>
+							</div>
+							<p class="text-sm" style="color: #C9A96E;">{edu.detail}</p>
+						</div>
+					{/each}
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════
      ACADEMICS & LEADERSHIP
 ══════════════════════════════════════════════════════════════ -->
 <section id="academics" class="w-full py-24 bg-[#0A0F2C]">
@@ -563,21 +822,21 @@
 				{#each [
 					{
 						side: 'left',
-						date: '2022 — 2025',
+						date: '2022 — Spring 2026',
 						title: 'Brownsville Early College High School',
-						description: 'Completed high school with a 4.84 GPA while dual-enrolling at the University of Texas Rio Grande Valley. Graduating May 2025 with both a high school diploma and an Associate\'s Degree — simultaneously.',
+						description: 'Completed high school with a 4.84 GPA while dual-enrolling at the University of Texas Rio Grande Valley. Graduating Spring 2026 with both a high school diploma and an Associate\'s Degree — simultaneously.',
 						tags: ['4.84 GPA', 'Dual Enrollment', "Associate's Degree"]
 					},
 					{
 						side: 'right',
-						date: '2023 — 2025',
+						date: '2024 — 2026',
 						title: 'Dual Enrollment — UTRGV',
 						description: 'Completed college-level coursework at the University of Texas Rio Grande Valley while still in high school, earning transferable credit hours toward a full undergraduate degree.',
 						tags: ['UTRGV', 'College Credit', 'Early College']
 					},
 					{
 						side: 'left',
-						date: '2024',
+						date: '2025 — Present',
 						title: 'Life Blueprint Club — Founder',
 						description: 'Founded the Life Blueprint Club at Brownsville Early College High School to equip students with financial and technological literacy. The club prepares students for life after high school through structured workshops covering budgeting, AI tools, and workforce readiness.',
 						tags: ['Financial Literacy', 'AI Education', 'Student Leadership']
@@ -591,9 +850,9 @@
 					},
 					{
 						side: 'left',
-						date: 'Fall 2025',
+						date: 'Fall 2026',
 						title: 'Incoming — UT Austin (CAP Program)',
-						description: "Accepted into the Coordinated Admission Program (CAP) at the University of Texas at Austin. Beginning undergraduate studies at UTRGV in Fall 2025, transitioning to UT Austin's main campus in the second semester as a full Longhorn.",
+						description: "Accepted into the Coordinated Admission Program (CAP) at the University of Texas at Austin. Beginning undergraduate studies at UTRGV in Fall 2026, transitioning to UT Austin's main campus in the second semester as a full Longhorn.",
 						tags: ['UT Austin', 'CAP Program', 'Undergraduate']
 					}
 				] as entry (entry.title)}

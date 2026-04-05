@@ -51,6 +51,18 @@
 				Academics
 			</a>
 			<a
+				href="/#projects"
+				class="text-white/80 text-sm tracking-wide hover:text-white transition-colors duration-200"
+			>
+				Projects
+			</a>
+			<a
+				href="/#profile"
+				class="text-white/80 text-sm tracking-wide hover:text-white transition-colors duration-200"
+			>
+				Profile
+			</a>
+			<a
 				href="#insights"
 				class="text-white/80 text-sm tracking-wide hover:text-white transition-colors duration-200"
 			>
