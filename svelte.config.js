@@ -21,6 +21,12 @@ const config = {
 		}),
 		paths: {
 			base: '/rb-portfolio-'
+		},
+		prerender: {
+			handleHttpError: ({ path, message }) => {
+				if (path === '/') return;
+				throw new Error(message);
+			}
 		}
 	}
 };
