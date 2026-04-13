@@ -23,6 +23,10 @@ const config = {
 			handleHttpError: ({ path }) => {
 				console.warn(`Ignoring HTTP error for ${path}`);
 				return;
+			},
+			handleMissingId: ({ id, path }) => {
+				console.warn(`Ignoring missing id "${id}" on ${path}`);
+				return;
 			}
 		}
 	}
