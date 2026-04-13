@@ -253,7 +253,7 @@
 		<div class="flex justify-center">
 			<img
 				id="hero-photo"
-				src="/richard-hero.jpg"
+				src="/Portrait.jpeg"
 				alt="Richard C. Bernard III — Founder of Aruon-AI"
 				class="w-full h-[280px] md:h-[480px] rounded-2xl object-cover object-top"
 				style="
