@@ -19,9 +19,6 @@ const config = {
 			precompress: false,
 			strict: false
 		}),
-		paths: {
-			base: '/rb-portfolio-'
-		},
 		prerender: {
 			handleHttpError: ({ path, message }) => {
 				if (path === '/') return;
