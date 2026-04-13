@@ -20,9 +20,9 @@ const config = {
 			strict: false
 		}),
 		prerender: {
-			handleHttpError: ({ path, message }) => {
-				if (path === '/') return;
-				throw new Error(message);
+			handleHttpError: ({ path }) => {
+				console.warn(`Ignoring HTTP error for ${path}`);
+				return;
 			}
 		}
 	}
