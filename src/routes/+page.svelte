@@ -4,6 +4,7 @@
 	import { ScrollTrigger } from 'gsap/ScrollTrigger';
 	import { base } from '$app/paths';
 	import SEO from '$lib/components/SEO.svelte';
+	import Insights from '$lib/components/Insights.svelte';
 
 	gsap.registerPlugin(ScrollTrigger);
 
@@ -972,6 +973,8 @@
 	</div>
 
 </section>
+
+<Insights />
 
 <style>
 	/* Hide scrollbar on timeline while keeping scroll functionality */
