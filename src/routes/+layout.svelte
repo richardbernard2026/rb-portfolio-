@@ -14,6 +14,12 @@
 	const siteUrl = 'https://richardbernard2026.github.io/rb-portfolio-/';
 	const siteImage = `${siteUrl}Portrait.jpeg`;
 
+	function scrollTo(e, id) {
+		e.preventDefault();
+		const el = document.getElementById(id);
+		if (el) el.scrollIntoView({ behavior: 'smooth' });
+	}
+
 	const jsonLd = JSON.stringify({
 		'@context': 'https://schema.org',
 		'@type': 'Person',
@@ -61,25 +67,29 @@
 		<!-- Nav links — hidden on mobile -->
 		<div class="hidden md:flex items-center gap-6">
 			<a
-				href="#venture"
+				href="/#venture"
+				on:click={(e) => scrollTo(e, 'venture')}
 				class="text-white/80 text-sm tracking-wide hover:text-white transition-colors duration-200"
 			>
 				Venture
 			</a>
 			<a
-				href="#academics"
+				href="/#academics"
+				on:click={(e) => scrollTo(e, 'academics')}
 				class="text-white/80 text-sm tracking-wide hover:text-white transition-colors duration-200"
 			>
 				Academics
 			</a>
 			<a
 				href="/#projects"
+				on:click={(e) => scrollTo(e, 'projects')}
 				class="text-white/80 text-sm tracking-wide hover:text-white transition-colors duration-200"
 			>
 				Projects
 			</a>
 			<a
 				href="/#profile"
+				on:click={(e) => scrollTo(e, 'profile')}
 				class="text-white/80 text-sm tracking-wide hover:text-white transition-colors duration-200"
 			>
 				Profile
