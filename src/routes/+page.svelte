@@ -798,7 +798,7 @@
 <!-- ══════════════════════════════════════════════════════════════
      ACADEMICS & LEADERSHIP
 ══════════════════════════════════════════════════════════════ -->
-<section id="academics" class="w-full py-24 bg-[#0A0F2C]">
+<section id="academics" class="w-full pt-48 pb-16 bg-[#0A0F2C]">
 
 	<!-- ── Section Header — stays in centered container ── -->
 	<div class="max-w-5xl mx-auto px-6 md:px-12">
@@ -814,20 +814,22 @@
 	</div>
 
 	<!-- ── Timeline — full-width, breaks out of max-w container ── -->
-	<div id="academics-timeline" class="relative">
+	<div id="academics-timeline" class="relative" style="overflow: visible;">
 
-		<!-- Scroll wrapper: full viewport width, scrollbar hidden -->
-		<div class="timeline-scroll overflow-x-auto" style="scrollbar-width: none;">
+		<!-- Scroll wrapper: horizontal scroll only — scrollbar hidden -->
+		<div class="timeline-scroll overflow-x-auto" style="scrollbar-width: none; overflow-y: visible;">
 
-			<!-- Inner flex row: padding sets edge margins, gap sets card spacing -->
+			<!-- Inner flex row: 40px vertical padding creates a buffer so tall above-line
+			     cards never overflow above y:0 of the scroll container (which clips due to
+			     overflow-x:auto forcing overflow-y:auto per CSS spec) -->
 			<div
 				class="relative flex flex-row gap-8"
-				style="min-width: max-content; height: 520px; padding: 0 32px;"
+				style="min-width: max-content; height: 600px; padding: 40px 32px;"
 			>
-				<!-- Horizontal line bleeds left-0 to right-0 of this container = full scroll width -->
+				<!-- Line: top=300px = 40px (top padding) + 260px (half of 520px column) -->
 				<div
 					class="absolute left-0 right-0 pointer-events-none"
-					style="top: 260px; height: 1px; background: rgba(201,169,110,0.22);"
+					style="top: 300px; height: 1px; background: rgba(201,169,110,0.22);"
 				></div>
 
 				{#each [
