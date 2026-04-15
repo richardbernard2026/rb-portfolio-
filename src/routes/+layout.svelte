@@ -1,6 +1,7 @@
 <script>
 	import favicon from '$lib/assets/favicon.svg';
 	import '../app.css';
+	import SEO from '$lib/components/SEO.svelte';
 
 	let { children } = $props();
 
@@ -9,11 +10,32 @@
 	function handleScroll() {
 		scrolled = window.scrollY > 50;
 	}
+
+	const siteUrl = 'https://richardbernard2026.github.io/rb-portfolio-/';
+	const siteImage = `${siteUrl}Portrait.jpeg`;
+
+	const jsonLd = JSON.stringify({
+		'@context': 'https://schema.org',
+		'@type': 'Person',
+		name: 'Richard C. Bernard III',
+		url: siteUrl,
+		sameAs: ['https://aruon.ai', 'https://linkedin.com/in/YOUR_HANDLE'],
+		jobTitle: 'Co-Founder & AI Entrepreneur'
+	});
 </script>
 
 <svelte:head>
 	<link rel="icon" href={favicon} />
+	<meta name="google-site-verification" content="R5Aj3Y3WCl7sQ5NtGahQmXB2QYj9JxGJ-ptmxNLmXHg" />
+	{@html `<script type="application/ld+json">${jsonLd}<\/script>`}
 </svelte:head>
+
+<SEO
+	title="Richard C. Bernard III — AI Founder & Future Corporate Lawyer"
+	description="Co-founder of Aruon-AI. Incoming undergraduate. Pursuing corporate law with a focus on M&A, business, and financial regulations."
+	url={siteUrl}
+	image={siteImage}
+/>
 
 <svelte:window on:scroll={handleScroll} />
 

@@ -3,6 +3,7 @@
 	import { gsap } from 'gsap';
 	import { ScrollTrigger } from 'gsap/ScrollTrigger';
 	import { base } from '$app/paths';
+	import SEO from '$lib/components/SEO.svelte';
 
 	gsap.registerPlugin(ScrollTrigger);
 
@@ -95,18 +96,17 @@
 			}
 		});
 
-		// ── Academics: timeline cards (alternating) ───────────────
+		// ── Academics: horizontal timeline cards ─────────────────
 		gsap.utils.toArray('.timeline-card').forEach((card, i) => {
-			const isLeft = i % 2 === 0;
 			gsap.from(card, {
-				x: isLeft ? -40 : 40,
+				y: 20,
 				opacity: 0,
-				duration: 0.7,
-				delay: i * 0.15,
+				duration: 0.6,
+				delay: i * 0.12,
 				ease: 'power2.out',
 				scrollTrigger: {
-					trigger: card,
-					start: 'top 85%'
+					trigger: '#academics-timeline',
+					start: 'top 80%'
 				}
 			});
 		});
@@ -209,6 +209,13 @@
 		});
 	});
 </script>
+
+<SEO
+	title="Richard C. Bernard III — AI Founder & Future Corporate Lawyer"
+	description="Co-founder of Aruon-AI. Incoming undergraduate. Pursuing corporate law with a focus on M&A, business, and financial regulations."
+	url="https://richardbernard2026.github.io/rb-portfolio-/"
+	image="https://richardbernard2026.github.io/rb-portfolio-/Portrait.jpeg"
+/>
 
 <svelte:window on:scroll={() => (scrollY = window.scrollY)} />
 
@@ -792,9 +799,9 @@
      ACADEMICS & LEADERSHIP
 ══════════════════════════════════════════════════════════════ -->
 <section id="academics" class="w-full py-24 bg-[#0A0F2C]">
-	<div class="max-w-5xl mx-auto px-6 md:px-12">
 
-		<!-- ── Section Header ── -->
+	<!-- ── Section Header — stays in centered container ── -->
+	<div class="max-w-5xl mx-auto px-6 md:px-12">
 		<div id="academics-header" class="flex flex-col items-center text-center mb-16">
 			<p class="text-xs font-semibold uppercase tracking-[0.2em] mb-3" style="color: #C9A96E;">
 				My Journey
@@ -804,109 +811,145 @@
 			</h2>
 			<div class="mt-4" style="width: 60px; height: 1px; background: rgba(201,169,110,0.2);"></div>
 		</div>
+	</div>
 
-		<!-- ── Timeline ── -->
-		<div class="relative">
-			<!-- Center line — hidden on mobile, visible md+ -->
-			<div
-				class="hidden md:block absolute left-1/2 top-0 bottom-0 -translate-x-1/2"
-				style="width: 1px; background: rgba(201,169,110,0.15);"
-			></div>
-			<!-- Mobile left line -->
-			<div
-				class="md:hidden absolute left-3 top-0 bottom-0"
-				style="width: 1px; background: rgba(201,169,110,0.15);"
-			></div>
+	<!-- ── Timeline — full-width, breaks out of max-w container ── -->
+	<div id="academics-timeline" class="relative">
 
-			<div class="flex flex-col gap-12">
+		<!-- Scroll wrapper: full viewport width, scrollbar hidden -->
+		<div class="timeline-scroll overflow-x-auto" style="scrollbar-width: none;">
+
+			<!-- Inner flex row: padding sets edge margins, gap sets card spacing -->
+			<div
+				class="relative flex flex-row gap-8"
+				style="min-width: max-content; height: 520px; padding: 0 32px;"
+			>
+				<!-- Horizontal line bleeds left-0 to right-0 of this container = full scroll width -->
+				<div
+					class="absolute left-0 right-0 pointer-events-none"
+					style="top: 260px; height: 1px; background: rgba(201,169,110,0.22);"
+				></div>
 
 				{#each [
 					{
-						side: 'left',
 						date: '2022 — Spring 2026',
 						title: 'Brownsville Early College High School',
 						description: 'Completed high school with a 4.84 GPA while dual-enrolling at the University of Texas Rio Grande Valley. Graduating Spring 2026 with both a high school diploma and an Associate\'s Degree — simultaneously.',
 						tags: ['4.84 GPA', 'Dual Enrollment', "Associate's Degree"]
 					},
 					{
-						side: 'right',
 						date: '2024 — 2026',
 						title: 'Dual Enrollment — UTRGV',
 						description: 'Completed college-level coursework at the University of Texas Rio Grande Valley while still in high school, earning transferable credit hours toward a full undergraduate degree.',
 						tags: ['UTRGV', 'College Credit', 'Early College']
 					},
 					{
-						side: 'left',
 						date: '2025 — Present',
 						title: 'Life Blueprint Club — Founder',
 						description: 'Founded the Life Blueprint Club at Brownsville Early College High School to equip students with financial and technological literacy. The club prepares students for life after high school through structured workshops covering budgeting, AI tools, and workforce readiness.',
 						tags: ['Financial Literacy', 'AI Education', 'Student Leadership']
 					},
 					{
-						side: 'right',
 						date: '2024 — Present',
 						title: 'AI Productivity & Financial Literacy Educator',
 						description: 'Led initiatives teaching fellow students how to leverage AI tools for productivity and apply foundational financial principles — bridging the gap between classroom education and real-world workforce expectations.',
 						tags: ['Teaching', 'AI Tools', 'Financial Education']
 					},
 					{
-						side: 'left',
 						date: 'Fall 2026',
 						title: 'Incoming — UT Austin (CAP Program)',
 						description: "Accepted into the Coordinated Admission Program (CAP) at the University of Texas at Austin. Beginning undergraduate studies at UTRGV in Fall 2026, transitioning to UT Austin's main campus in the second semester as a full Longhorn.",
 						tags: ['UT Austin', 'CAP Program', 'Undergraduate']
 					}
-				] as entry (entry.title)}
-					<!-- Desktop: alternate left/right. Mobile: all stack left-indented -->
-					<div class="relative flex items-start
-					            {entry.side === 'left'
-					              ? 'md:flex-row md:justify-start pl-8 md:pl-0'
-					              : 'md:flex-row-reverse md:justify-start pl-8 md:pl-0'}">
+				] as entry, i (entry.title)}
 
-						<!-- Gold dot on center line -->
+					<!-- Column: fixed 288px (≈w-72), no internal x-padding — gap handles spacing -->
+					<div
+						class="relative flex flex-col flex-shrink-0"
+						style="width: 288px; height: 520px;"
+					>
+						<!-- Gold dot centered on the line at y=260 -->
 						<div
-							class="absolute hidden md:block top-6 left-1/2 -translate-x-1/2 rounded-full z-10"
-							style="width: 10px; height: 10px; background: #C9A96E;"
-						></div>
-						<!-- Mobile dot on left line -->
-						<div
-							class="absolute md:hidden top-6 left-3 -translate-x-1/2 rounded-full z-10"
-							style="width: 10px; height: 10px; background: #C9A96E;"
+							class="absolute left-1/2 rounded-full z-10"
+							style="top: 254px; transform: translateX(-50%); width: 12px; height: 12px; background: #C9A96E; box-shadow: 0 0 10px rgba(201,169,110,0.45);"
 						></div>
 
-						<!-- Card — takes up ~45% width on desktop, full on mobile -->
+						<!-- Top half — even entries sit above the line -->
 						<div
-							class="timeline-card w-full md:w-[45%] rounded-2xl p-6"
-							style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);"
+							class="flex flex-col justify-end"
+							style="height: 260px; padding-bottom: 24px;"
 						>
-							<p class="text-xs font-semibold uppercase tracking-[0.15em] mb-2" style="color: #C9A96E;">
-								{entry.date}
-							</p>
-							<h3 class="text-base font-bold text-white mb-2 leading-snug">
-								{entry.title}
-							</h3>
-							<p class="text-sm text-white/70 leading-relaxed mb-4">
-								{entry.description}
-							</p>
-							<div class="flex flex-wrap gap-2">
-								{#each entry.tags as tag (tag)}
-									<span
-										class="text-xs font-medium px-3 py-1 rounded-full"
-										style="background: rgba(201,169,110,0.15); color: #C9A96E;"
-									>
-										{tag}
-									</span>
-								{/each}
-							</div>
+							{#if i % 2 === 0}
+								<div
+									class="timeline-card rounded-2xl p-5"
+									style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);"
+								>
+									<p class="text-xs font-semibold uppercase tracking-[0.15em] mb-2" style="color: #C9A96E;">
+										{entry.date}
+									</p>
+									<h3 class="text-sm font-bold text-white mb-2 leading-snug">
+										{entry.title}
+									</h3>
+									<p class="text-xs leading-relaxed mb-3" style="color: rgba(255,255,255,0.65);">
+										{entry.description}
+									</p>
+									<div class="flex flex-wrap gap-1.5">
+										{#each entry.tags as tag (tag)}
+											<span
+												class="text-xs font-medium px-2.5 py-0.5 rounded-full"
+												style="background: rgba(201,169,110,0.15); color: #C9A96E;"
+											>{tag}</span>
+										{/each}
+									</div>
+								</div>
+							{/if}
 						</div>
 
+						<!-- Bottom half — odd entries sit below the line -->
+						<div
+							class="flex flex-col justify-start"
+							style="height: 260px; padding-top: 24px;"
+						>
+							{#if i % 2 === 1}
+								<div
+									class="timeline-card rounded-2xl p-5"
+									style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);"
+								>
+									<p class="text-xs font-semibold uppercase tracking-[0.15em] mb-2" style="color: #C9A96E;">
+										{entry.date}
+									</p>
+									<h3 class="text-sm font-bold text-white mb-2 leading-snug">
+										{entry.title}
+									</h3>
+									<p class="text-xs leading-relaxed mb-3" style="color: rgba(255,255,255,0.65);">
+										{entry.description}
+									</p>
+									<div class="flex flex-wrap gap-1.5">
+										{#each entry.tags as tag (tag)}
+											<span
+												class="text-xs font-medium px-2.5 py-0.5 rounded-full"
+												style="background: rgba(201,169,110,0.15); color: #C9A96E;"
+											>{tag}</span>
+										{/each}
+									</div>
+								</div>
+							{/if}
+						</div>
 					</div>
+
 				{/each}
 
 			</div>
 		</div>
 
-		<!-- ── Achievements Row ── -->
+		<!-- Mobile swipe hint -->
+		<p class="mt-3 text-center text-xs md:hidden" style="color: rgba(201,169,110,0.45);">
+			swipe to explore →
+		</p>
+	</div>
+
+	<!-- ── Achievements Row — back in centered container ── -->
+	<div class="max-w-5xl mx-auto px-6 md:px-12">
 		<div id="achievements-row" class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-4">
 			{#each [
 				{ icon: '🏅', title: 'AMC Math', subtitle: 'Silver Medal' },
@@ -924,6 +967,16 @@
 				</div>
 			{/each}
 		</div>
-
 	</div>
+
 </section>
+
+<style>
+	/* Hide scrollbar on timeline while keeping scroll functionality */
+	.timeline-scroll {
+		-ms-overflow-style: none; /* IE / Edge legacy */
+	}
+	.timeline-scroll::-webkit-scrollbar {
+		display: none; /* Chrome, Safari, newer Edge */
+	}
+</style>
