@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import { gsap } from 'gsap';
 	import { ScrollTrigger } from 'gsap/ScrollTrigger';
+	import { base } from '$app/paths';
 
 	gsap.registerPlugin(ScrollTrigger);
 
@@ -253,7 +254,7 @@
 		<div class="flex justify-center">
 			<img
 				id="hero-photo"
-				src="/Portrait.jpeg"
+				src="{base}/Portrait.jpeg"
 				alt="Richard C. Bernard III — Founder of Aruon-AI"
 				class="w-full h-[280px] md:h-[480px] rounded-2xl object-cover object-top"
 				style="

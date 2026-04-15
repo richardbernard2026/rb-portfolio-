@@ -14,6 +14,9 @@ const config = {
 		}
 	},
 	kit: {
+		paths: {
+			base: process.env.NODE_ENV === 'production' ? '/rb-portfolio-' : ''
+		},
 		adapter: adapter({
 			fallback: null,
 			precompress: false,
